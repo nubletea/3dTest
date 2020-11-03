@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4box</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        .box{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            width:100vw;
+            height:100vh;
+            perspective: 1000px;
+        }
+        .carousel{
+            position:relative;
+            width:300px;
+            height:100px;
+            transform:rotateY(0);
+            transition:1s;
+            transform-style: preserve-3d;
+        }
+        .panel{
+            border:1px solid #ddd;
+            position:absolute;
+            background:orange;
+            left:0;
+            top:0;
+            width:300px;
+            height:100px;
+        }
+        .panel:nth-child(1){transform:rotateY(0deg) translateZ(150px);}
+        .panel:nth-child(2){transform:rotateY(90deg) translateZ(150px);}
+        .panel:nth-child(3){transform:rotateY(180deg) translateZ(150px);}
+        .panel:nth-child(4){transform:rotateY(270deg) translateZ(150px);}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul class="carousel">
+            <li class="panel">1</li>
+            <li class="panel">2</li>
+            <li class="panel">3</li>
+            <li class="panel">4</li>
+        </ul>
+    </div>
+    <script>
+        const BOX=document.querySelector('.box');
+        const CAROUSEL=document.querySelector('.carousel');
+        const box_T={
+            is:true
+        }
+        BOX.addEventListener('click',function(){
+            if(box_T.is===true){
+                CAROUSEL.style.transform="rotateY(-90deg)";
+                box_T.is=false;
+            }else{
+                CAROUSEL.style.transform="rotateY(0deg)";
+                box_T.is=true;
+            }
+        });
+    </script>    
+</body>
+</html>
